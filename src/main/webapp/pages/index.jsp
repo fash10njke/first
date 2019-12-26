@@ -41,8 +41,8 @@
         <sec:authorize access="isAuthenticated()">
             <p>Ваш логин: <sec:authentication property="principal.username" /></p>
             <p><a class="btn btn-lg btn-danger" href="<c:url value="/logout" />" role="button">Выйти</a></p>
-
         </sec:authorize>
+
     </div>
 
     <div class="footer">

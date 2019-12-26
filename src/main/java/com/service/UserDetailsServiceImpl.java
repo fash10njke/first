@@ -1,6 +1,7 @@
 package com.service;
 
 import com.entity.User;
+import com.entity.dao.UserDAO;
 import com.entity.enums.UserRoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,11 +24,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
         UserDetails userDetails;
          // с помощью нашего сервиса UserService получаем User
-        for (Map.Entry<String, String> entry : UserList.getUserList().entrySet()) {
+        for (Map.Entry<String, String> entry : UserDAO.getUserList().entrySet()) {
            if (entry.getKey().equals(email)){
                User user = new User();
                user.setLogin(email);
-               user.setPassword(UserList.getUserList().get(email));
+               user.setPassword(UserDAO.getUserList().get(email));
                Set<GrantedAuthority> roles = new HashSet();
                roles.add(new SimpleGrantedAuthority(UserRoleEnum.ADMIN.name()));
                userDetails =
